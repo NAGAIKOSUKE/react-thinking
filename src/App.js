@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Clock from './Clocks';
+import Gallery from './Gallery';
+import List from './List';
+import RecipeList from './Recipe';
+import Poem from './Poem';
 
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
@@ -6,13 +11,13 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
-        inStockOnly={inStockOnly} 
-        onFilterTextChange={setFilterText} 
+      <SearchBar
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+        onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
-      <ProductTable 
-        products={products} 
+      <ProductTable
+        products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
     </div>
@@ -94,14 +99,14 @@ function SearchBar({
 }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} placeholder="Search..." 
+      <input
+        type="text"
+        value={filterText} placeholder="Search..."
         onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
-        <input 
-          type="checkbox" 
-          checked={inStockOnly} 
+        <input
+          type="checkbox"
+          checked={inStockOnly}
           onChange={(e) => onInStockOnlyChange(e.target.checked)} />
         {' '}
         Only show products in stock
@@ -111,14 +116,53 @@ function SearchBar({
 }
 
 const PRODUCTS = [
-  {category: "Fruits", price: "$1", stocked: true, name: "Apple"},
-  {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},
-  {category: "Fruits", price: "$2", stocked: false, name: "Passionfruit"},
-  {category: "Vegetables", price: "$2", stocked: true, name: "Spinach"},
-  {category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin"},
-  {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}
+  { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+  { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+  { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+  { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+  { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+  { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
 ];
 
+function useTime() {
+  const [time, setTime] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
+
+export function Clocks() {
+  const time = useTime();
+  const [color, setColor] = useState('lightcoral');
+  return (
+    <div>
+      <p>
+        Pick a color:{' '}
+        <select value={color} onChange={e => setColor(e.target.value)}>
+          <option value="lightcoral">lightcoral</option>
+          <option value="midnightblue">midnightblue</option>
+          <option value="rebeccapurple">rebeccapurple</option>
+        </select>
+      </p>
+      <Clock color={color} time={time.toLocaleTimeString()} />
+    </div>
+  );
+}
+
+
 export default function App() {
-  return <FilterableProductTable products={PRODUCTS} />;
+  return (
+    <>
+      <FilterableProductTable products={PRODUCTS} />;
+      <Clocks />
+      <Gallery/>
+      <List/>
+      <RecipeList/>
+      <Poem/>
+    </>
+  );
 }

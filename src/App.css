@@ -32,7 +32,55 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.avatar {
+  margin: 5px;
+  border-radius: 50%;
+  min-height: 70px;
+}
+
+.profile {
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+
+ul {
+  padding-inline-start: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px 10px;
+}
+
+li {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.poem {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+hr {
+  margin: 0 120px 0 120px;
+  border: 1px dashed #45c3d8;
 }
