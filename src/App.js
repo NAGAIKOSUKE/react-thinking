@@ -4,6 +4,9 @@ import Gallery from './Gallery';
 import List from './List';
 import RecipeList from './Recipe';
 import Poem from './Poem';
+import Gallerys from './Gallerys';
+import Form from './Form';
+import ColorChange from './ColorChange';
 
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
@@ -163,6 +166,9 @@ export default function App() {
       <List/>
       <RecipeList/>
       <Poem/>
+      <Gallerys/>
+      <Form/>
+      <ColorChange/>
     </>
   );
 }
