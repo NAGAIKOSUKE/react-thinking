@@ -8,6 +8,7 @@ import Gallerys from './Gallerys';
 import Form from './Form';
 import ColorChange from './ColorChange';
 import ProcessQueue from './ProcessQueue';
+import Messenger from './Messenger';
 
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
@@ -171,6 +172,7 @@ export default function App() {
       <Form/>
       <ColorChange/>
       <ProcessQueue/>
+      <Messenger/>
     </>
   );
 }
