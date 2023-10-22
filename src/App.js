@@ -9,6 +9,9 @@ import Form from './Form';
 import ColorChange from './ColorChange';
 import ProcessQueue from './ProcessQueue';
 import Messenger from './Messenger';
+import Stopwatch from './StopWatch';
+import Chat2 from './Chat2';
+import CatFriends from './CatFriends';
 
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
@@ -173,6 +176,9 @@ export default function App() {
       <ColorChange/>
       <ProcessQueue/>
       <Messenger/>
+      <Stopwatch/>
+      <Chat2/>
+      <CatFriends/>
     </>
   );
 }
